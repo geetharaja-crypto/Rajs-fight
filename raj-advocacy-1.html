@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fighting for Raj | Cholangiocarcinoma Awareness</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal-deep:    #1B4332;
+      --teal-mid:     #2D6A4F;
+      --teal-light:   #95D5B2;
+      --teal-pale:    #E8F5EE;
+      --white:        #FFFFFF;
+      --slate:        #1A2535;
+      --slate-light:  #4A5A6A;
+      --gold:         #C8772A;
+      --gold-light:   #FAE8D0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--slate);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--teal-light);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--teal-deep);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--slate-light);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--teal-deep); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      padding-top: 64px;
+      background: linear-gradient(135deg, #1B4332 0%, #14532D 40%, #0A2E1A 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      text-align: center;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 20% 80%, rgba(168,221,228,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 60% at 80% 20%, rgba(26,154,168,0.15) 0%, transparent 70%);
+    }
+    .hero-ripple {
+      position: absolute; border-radius: 50%;
+      border: 1px solid rgba(168,221,228,0.15);
+      animation: ripple 6s ease-out infinite;
+    }
+    .hero-ripple:nth-child(1) { width: 300px; height: 300px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: 0s; }
+    .hero-ripple:nth-child(2) { width: 500px; height: 500px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: 1.5s; }
+    .hero-ripple:nth-child(3) { width: 720px; height: 720px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: 3s; }
+    @keyframes ripple {
+      0%   { opacity: 0.6; transform: translate(-50%,-50%) scale(0.95); }
+      100% { opacity: 0;   transform: translate(-50%,-50%) scale(1.1); }
+    }
+
+    .hero-content { position: relative; z-index: 2; max-width: 780px; padding: 2rem; }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--teal-light);
+      border: 1px solid rgba(168,221,228,0.4);
+      padding: 0.35rem 1rem; border-radius: 2rem;
+      margin-bottom: 1.8rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 span { color: var(--teal-light); }
+    .hero-sub {
+      font-size: 1.15rem; font-weight: 300;
+      color: rgba(255,255,255,0.78);
+      max-width: 560px; margin: 0 auto 2.5rem;
+    }
+    .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--white);
+      padding: 0.85rem 2rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-weight: 600; font-size: 0.9rem;
+      letter-spacing: 0.03em;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(200,148,58,0.4);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(200,119,42,0.5); }
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.4);
+      color: var(--white);
+      padding: 0.85rem 2rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-weight: 500; font-size: 0.9rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.7); }
+
+    .scroll-hint {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      color: rgba(255,255,255,0.4); font-size: 0.7rem; letter-spacing: 0.1em;
+    }
+    .scroll-arrow {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.4));
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+    /* ── SECTIONS SHARED ── */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--teal-mid);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--slate);
+      margin-bottom: 1.2rem;
+      line-height: 1.2;
+    }
+    .section-body {
+      font-size: 1.05rem;
+      color: var(--slate-light);
+      max-width: 680px;
+      line-height: 1.8;
+    }
+
+    /* ── RAJ'S STORY ── */
+    .story { background: var(--white); }
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .story-visual {
+      position: relative;
+    }
+    .story-card {
+      background: var(--teal-pale);
+      border-radius: 1.5rem;
+      padding: 3rem 2.5rem;
+      border-left: 4px solid var(--teal-mid);
+    }
+    .story-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--teal-deep);
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+    .story-quote::before { content: '\201C'; font-size: 3rem; color: var(--teal-light); line-height: 0; vertical-align: -0.6rem; margin-right: 0.2rem; }
+    .story-attr {
+      font-size: 0.85rem; font-weight: 600;
+      color: var(--slate-light);
+      letter-spacing: 0.05em;
+    }
+    .story-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem; margin-top: 2rem;
+    }
+    .stat-box {
+      background: var(--white);
+      border-radius: 1rem;
+      padding: 1.2rem;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(13,110,118,0.08);
+    }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700;
+      color: var(--teal-deep);
+    }
+    .stat-desc { font-size: 0.75rem; color: var(--slate-light); margin-top: 0.2rem; }
+
+    /* ── ABOUT THE CANCER ── */
+    .about { background: var(--teal-pale); }
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .fact-card {
+      background: var(--white);
+      border-radius: 1.2rem;
+      padding: 2rem;
+      box-shadow: 0 2px 16px rgba(13,110,118,0.07);
+      transition: transform 0.2s;
+    }
+    .fact-card:hover { transform: translateY(-4px); }
+    .fact-icon {
+      width: 48px; height: 48px;
+      background: var(--teal-pale);
+      border-radius: 0.8rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+    .fact-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--slate);
+      margin-bottom: 0.5rem;
+    }
+    .fact-card p { font-size: 0.9rem; color: var(--slate-light); line-height: 1.6; }
+
+    /* ── UPDATES ── */
+    .updates { background: var(--white); }
+    .update-timeline { margin-top: 3rem; }
+    .update-item {
+      display: flex; gap: 1.5rem;
+      padding-bottom: 2.5rem;
+      position: relative;
+    }
+    .update-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 19px; top: 40px; bottom: 0;
+      width: 1px;
+      background: var(--teal-light);
+    }
+    .update-dot {
+      flex-shrink: 0;
+      width: 40px; height: 40px;
+      background: var(--teal-pale);
+      border: 2px solid var(--teal-mid);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .update-body {}
+    .update-date { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; color: var(--teal-mid); text-transform: uppercase; margin-bottom: 0.3rem; }
+    .update-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--slate); margin-bottom: 0.4rem; }
+    .update-text { font-size: 0.92rem; color: var(--slate-light); line-height: 1.65; }
+
+    /* ── TABS ── */
+    .tab-bar {
+      display: flex; gap: 0.5rem;
+      margin-bottom: 2.5rem;
+      border-bottom: 2px solid var(--teal-light);
+      padding-bottom: 0;
+    }
+    .tab-btn {
+      background: none; border: none; cursor: pointer;
+      font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600;
+      color: var(--slate-light); padding: 0.7rem 1.4rem;
+      border-bottom: 3px solid transparent; margin-bottom: -2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tab-btn:hover { color: var(--teal-deep); }
+    .tab-btn.active { color: var(--teal-deep); border-bottom-color: var(--teal-deep); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* PHOTO GRID (main page) */
+    .main-photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.2rem; margin-top: 1rem;
+    }
+    .main-photo-card {
+      background: var(--white); border-radius: 1rem;
+      overflow: hidden; box-shadow: 0 2px 12px rgba(13,110,118,0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .main-photo-card:hover { transform: translateY(-3px); box-shadow: 0 6px 24px rgba(13,110,118,0.14); }
+    .main-photo-img {
+      width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; cursor: pointer;
+    }
+    .main-photo-placeholder {
+      width: 100%; aspect-ratio: 4/3;
+      background: var(--teal-pale);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; color: var(--teal-mid);
+    }
+    .main-photo-body { padding: 0.9rem 1rem 1rem; }
+    .main-photo-date { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal-mid); margin-bottom: 0.2rem; }
+    .main-photo-caption { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; color: var(--slate); margin-bottom: 0.2rem; }
+    .main-photo-memory { font-size: 0.8rem; color: var(--slate-light); line-height: 1.5; }
+
+    /* PHOTO UPLOAD (main page) */
+    .photo-upload-bar {
+      display: flex; gap: 0.8rem; align-items: flex-end;
+      flex-wrap: wrap; margin-bottom: 1.5rem;
+      background: var(--white); border-radius: 1rem;
+      padding: 1.2rem; box-shadow: 0 2px 12px rgba(13,110,118,0.07);
+    }
+    .photo-upload-bar input[type="text"] {
+      flex: 1; min-width: 140px;
+      padding: 0.6rem 0.9rem;
+      border: 1.5px solid var(--teal-light); border-radius: 0.6rem;
+      font-family: 'Inter', sans-serif; font-size: 0.88rem; color: var(--slate);
+      outline: none; transition: border-color 0.2s;
+    }
+    .photo-upload-bar input[type="text"]:focus { border-color: var(--teal-mid); }
+    .photo-file-label {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: var(--teal-pale); border: 1.5px solid var(--teal-light);
+      color: var(--teal-deep); padding: 0.6rem 1rem;
+      border-radius: 0.6rem; font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; white-space: nowrap;
+    }
+    .photo-file-label:hover { background: var(--teal-light); }
+    .photo-file-input { display: none; }
+    .btn-add-photo {
+      background: var(--teal-deep); color: var(--white);
+      border: none; cursor: pointer;
+      padding: 0.65rem 1.2rem; border-radius: 0.6rem;
+      font-family: 'Inter', sans-serif; font-size: 0.88rem; font-weight: 600;
+      white-space: nowrap; transition: background 0.2s;
+    }
+    .btn-add-photo:hover { background: var(--teal-mid); }
+
+    /* LIGHTBOX */
+    .main-lightbox {
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,0.92); align-items: center; justify-content: center; padding: 2rem;
+    }
+    .main-lightbox.open { display: flex; }
+    .main-lightbox-inner { position: relative; max-width: 860px; width: 100%; text-align: center; }
+    .main-lightbox img { max-width: 100%; max-height: 70vh; border-radius: 1rem; object-fit: contain; display: block; margin: 0 auto; }
+    .main-lightbox-caption { color: #fff; font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-top: 1rem; }
+    .main-lightbox-date { color: var(--teal-light); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem; }
+    .main-lightbox-memory { color: rgba(255,255,255,0.65); font-size: 0.85rem; margin-top: 0.5rem; }
+    .main-lightbox-close {
+      position: absolute; top: -1rem; right: -1rem;
+      background: #fff; border: none; border-radius: 50%;
+      width: 36px; height: 36px; font-size: 1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .post-mood-label {
+      display:flex; align-items:center; gap:0.5rem;
+      padding:0.7rem 0.9rem; border:1.5px solid var(--teal-light); border-radius:0.75rem;
+      cursor:pointer; font-size:0.85rem; font-weight:500; color:var(--slate-light);
+      transition:all 0.2s; user-select:none;
+    }
+    .post-mood-label:hover { border-color:var(--teal-mid); color:var(--slate); }
+    input[type="radio"]:checked + .post-mood-label { border-color:var(--teal-deep); background:var(--teal-pale); color:var(--teal-deep); font-weight:600; }
+
+    /* ── TAKE ACTION ── */
+    .action { background: linear-gradient(135deg, #1B3A6B, #0F2444); }
+    .action .section-label { color: var(--teal-light); }
+    .action .section-title { color: var(--white); }
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .action-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(168,221,228,0.2);
+      border-radius: 1.2rem;
+      padding: 2rem;
+      text-align: center;
+      transition: background 0.2s;
+    }
+    .action-card:hover { background: rgba(255,255,255,0.14); }
+    .action-card .action-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .action-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--white); margin-bottom: 0.6rem; }
+    .action-card p { font-size: 0.88rem; color: rgba(255,255,255,0.65); line-height: 1.6; margin-bottom: 1.5rem; }
+    .action-card a {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--white);
+      padding: 0.6rem 1.4rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-size: 0.82rem; font-weight: 600;
+      transition: transform 0.2s;
+    }
+    .action-card a:hover { transform: scale(1.05); }
+
+    /* ── RESOURCES ── */
+    .resources { background: var(--teal-pale); }
+    .resource-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .resource-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      background: var(--white);
+      border-radius: 1rem;
+      padding: 1.4rem 1.6rem;
+      text-decoration: none;
+      box-shadow: 0 1px 8px rgba(13,110,118,0.07);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .resource-item:hover { box-shadow: 0 4px 20px rgba(13,110,118,0.14); transform: translateY(-2px); }
+    .resource-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .resource-text h4 { font-size: 0.95rem; font-weight: 600; color: var(--teal-deep); margin-bottom: 0.2rem; }
+    .resource-text p { font-size: 0.82rem; color: var(--slate-light); }
+
+    .resource-tag {
+      display: inline-block;
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      background: var(--teal-pale);
+      color: var(--teal-deep);
+      padding: 0.15rem 0.6rem;
+      border-radius: 2rem;
+      margin-bottom: 0.35rem;
+    }
+    .research-tag { background: #EAF0FA; color: #1B3A6B; }
+    .support-tag  { background: #FEF3E2; color: #7A4A00; }
+
+    .resource-group-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--teal-deep);
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--teal-light);
+    }
+
+    /* ── CONTACT ── */
+    .contact { background: var(--white); text-align: center; }
+    .contact .section-body { margin: 0 auto 2.5rem; }
+    .contact-form {
+      max-width: 520px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      border: 1.5px solid var(--teal-light);
+      border-radius: 0.8rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: var(--slate);
+      outline: none;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus { border-color: var(--teal-mid); }
+    .contact-form button {
+      background: var(--teal-deep);
+      color: var(--white);
+      border: none; cursor: pointer;
+      padding: 0.9rem 2.5rem;
+      border-radius: 2rem;
+      font-size: 0.95rem; font-weight: 600;
+      transition: background 0.2s, transform 0.2s;
+      align-self: center;
+    }
+    .contact-form button:hover { background: var(--teal-mid); transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--slate);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.82rem;
+    }
+    footer span { color: var(--teal-light); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .story-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .facts-grid { grid-template-columns: 1fr; }
+      .action-grid { grid-template-columns: 1fr; }
+      .resource-list { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-ripple, .scroll-arrow { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Fighting for Raj</a>
+  <ul class="nav-links">
+    <li><a href="#story">His Story</a></li>
+    <li><a href="#about">About CCA</a></li>
+    <li><a href="updates.html">Raj's Updates</a></li>
+    <li><a href="photos.html">Photos</a></li>
+    <li><a href="#action">Take Action</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-ripple"></div>
+  <div class="hero-ripple"></div>
+  <div class="hero-ripple"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Cholangiocarcinoma Awareness</div>
+    <h1>Fighting for<br/><span>Raj</span></h1>
+    <p class="hero-sub">One family's journey through stage 4 cholangiocarcinoma — sharing hope, truth, and a call to action.</p>
+    <div class="hero-ctas">
+      <a href="#action" class="btn-primary">Support Raj</a>
+      <a href="#story" class="btn-outline">Read His Story</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- RAJ'S STORY -->
+<section class="story" id="story">
+  <div class="container">
+    <div class="story-grid">
+      <div>
+        <div class="section-label">His Story</div>
+        <h2 class="section-title">Meet Raj</h2>
+        <p class="section-body">
+          Raj is more than a patient — he is a brother, a friend, a force of kindness in the lives of everyone who knows him. When he was diagnosed with stage 4 cholangiocarcinoma, our world changed. But his spirit did not.
+        </p>
+        <p class="section-body" style="margin-top:1rem;">
+          We created this space to share his journey, raise awareness about this rare and under-researched cancer, and connect with others who are walking the same road. You are not alone — and neither is Raj.
+        </p>
+      </div>
+      <div class="story-visual">
+        <div class="story-card">
+          <p class="story-quote">Every day is a gift, and we are going to fight for every single one of them.</p>
+          <div class="story-attr">— Raj's family</div>
+          <div class="story-stats">
+            <div class="stat-box">
+              <div class="stat-number">~1,300</div>
+              <div class="stat-desc">Australians diagnosed per year</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number">Rare</div>
+              <div class="stat-desc">Only 3% of GI cancers</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number">Hope</div>
+              <div class="stat-desc">New trials opening in 2026</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number">1</div>
+              <div class="stat-desc">Brother worth everything</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT THE CANCER -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="section-label">What We're Fighting</div>
+    <h2 class="section-title">About Cholangiocarcinoma</h2>
+    <p class="section-body">Cholangiocarcinoma (CCA) is a rare cancer of the bile ducts. It is often diagnosed late, which makes awareness and research funding critical. Here's what everyone should know.</p>
+    <div class="facts-grid">
+      <div class="fact-card">
+        <div class="fact-icon">🔬</div>
+        <h3>What Is It?</h3>
+        <p>CCA forms in the bile ducts — the tubes that carry bile from the liver to the small intestine. It is aggressive and often asymptomatic until advanced stages.</p>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">⚠️</div>
+        <h3>Why It's Hard to Detect</h3>
+        <p>Symptoms like jaundice, weight loss, and abdominal pain often appear only in later stages, making early diagnosis rare. There is no routine screening test.</p>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">💊</div>
+        <h3>Current Treatments</h3>
+        <p>Standard treatment includes gemcitabine + cisplatin + durvalumab. Targeted therapies exist for specific mutations (FGFR2, IDH1, BRAF), and new trials are ongoing.</p>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">🧬</div>
+        <h3>Genomic Testing Matters</h3>
+        <p>Comprehensive genomic profiling (e.g. FoundationOne) can identify actionable mutations and open doors to targeted therapies and clinical trials that standard tests miss.</p>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">🏥</div>
+        <h3>Seek Specialist Centers</h3>
+        <p>Peter MacCallum Cancer Centre (Melbourne), Chris O'Brien Lifehouse (Sydney), Royal Prince Alfred Hospital, and Princess Alexandra Hospital (Brisbane) have dedicated cancer programs with bile duct expertise. Remote second opinions are available.</p>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">🌐</div>
+        <h3>Community & Research</h3>
+        <p>The Cholangiocarcinoma Foundation leads global research efforts and offers patient registries, trial matching, and peer community support for patients and families.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UPDATES -->
+<section class="updates" id="updates">
+  <div class="container">
+    <div class="section-label">Raj's Journey</div>
+    <h2 class="section-title">Updates & Photos</h2>
+    <p class="section-body">Follow along with Raj's journey — his latest updates and cherished moments, all in one place.</p>
+
+    <!-- TAB BAR -->
+    <div class="tab-bar" style="margin-top:2rem;">
+      <button class="tab-btn active" onclick="switchTab('updates', this)">📋 Updates</button>
+      <button class="tab-btn" onclick="switchTab('photos', this)">📸 Photos</button>
+      <button class="tab-btn" onclick="switchTab('post', this)">✏️ Post Update</button>
+    </div>
+
+    <!-- UPDATES TAB -->
+    <div class="tab-panel active" id="tab-updates">
+      <div class="update-timeline">
+        <div class="update-item">
+          <div class="update-dot">💙</div>
+          <div class="update-body">
+            <div class="update-date">June 2026</div>
+            <div class="update-title">This Website Is Live</div>
+            <p class="update-text">We launched this site to share Raj's story, raise awareness, and connect with anyone walking a similar path. We are grateful for every visitor. Please share this page — awareness saves lives.</p>
+          </div>
+        </div>
+        <div class="update-item">
+          <div class="update-dot">🔬</div>
+          <div class="update-body">
+            <div class="update-date">Ongoing</div>
+            <div class="update-title">Exploring Clinical Trials</div>
+            <p class="update-text">Raj's care team is reviewing clinical trial options. Genomic profiling has been requested to identify any targetable mutations. We are hopeful and pressing forward.</p>
+          </div>
+        </div>
+        <div class="update-item">
+          <div class="update-dot">🌟</div>
+          <div class="update-body">
+            <div class="update-date">Always</div>
+            <div class="update-title">Raj Keeps Smiling</div>
+            <p class="update-text">Through every appointment and hard day, Raj's spirit remains an inspiration to everyone around him. His courage is the reason we fight.</p>
+          </div>
+        </div>
+        <div style="margin-top:2rem;">
+          <a href="updates.html" style="display:inline-block; background:var(--teal-deep); color:#fff; padding:0.75rem 1.8rem; border-radius:2rem; text-decoration:none; font-size:0.88rem; font-weight:600;">Read All of Raj's Updates →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHOTOS TAB -->
+    <div class="tab-panel" id="tab-photos">
+
+      <!-- UPLOAD BAR -->
+      <div class="photo-upload-bar">
+        <label class="photo-file-label">
+          📷 Choose Photo
+          <input type="file" accept="image/*" class="photo-file-input" id="mainFileInput" onchange="mainPreviewFile(event)" />
+        </label>
+        <input type="text" id="mainCaption" placeholder="Caption" />
+        <input type="text" id="mainDate" placeholder="Date" />
+        <input type="text" id="mainMemory" placeholder="Memory (optional)" />
+        <button class="btn-add-photo" onclick="mainAddPhoto()">Add Photo ✨</button>
+      </div>
+
+      <!-- GRID -->
+      <div class="main-photo-grid" id="mainPhotoGrid">
+        <div style="grid-column:1/-1; background:var(--white); border-radius:1rem; padding:2.5rem; text-align:center; box-shadow:0 2px 12px rgba(13,110,118,0.07);">
+          <div style="font-size:2rem; margin-bottom:0.6rem;">🌿</div>
+          <div style="font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--slate); margin-bottom:0.3rem;">No photos yet</div>
+          <div style="font-size:0.85rem; color:var(--slate-light);">Use the form above to add the first photo.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:1.5rem;">
+        <a href="photos.html" style="display:inline-block; background:var(--teal-deep); color:#fff; padding:0.75rem 1.8rem; border-radius:2rem; text-decoration:none; font-size:0.88rem; font-weight:600;">View Full Photo Gallery →</a>
+      </div>
+    </div>
+
+    <!-- POST UPDATE TAB -->
+    <div class="tab-panel" id="tab-post">
+      <div style="background:var(--white); border-radius:1.2rem; padding:2rem; box-shadow:0 2px 16px rgba(13,110,118,0.08); border-top:4px solid var(--teal-deep);">
+        <p style="font-size:0.88rem; color:var(--slate-light); margin-bottom:1.4rem;">Fill in the form — no coding needed. Copy the generated code and paste it into <strong>updates.html</strong> on GitHub.</p>
+
+        <div style="margin-bottom:1rem;">
+          <label style="display:block; font-size:0.82rem; font-weight:600; color:var(--teal-deep); margin-bottom:0.4rem;">📅 Date</label>
+          <input type="text" id="postDate" style="width:100%; padding:0.75rem 1rem; border:1.5px solid var(--teal-light); border-radius:0.75rem; font-family:'Inter',sans-serif; font-size:0.92rem; outline:none;" />
+        </div>
+        <div style="margin-bottom:1rem;">
+          <label style="display:block; font-size:0.82rem; font-weight:600; color:var(--teal-deep); margin-bottom:0.4rem;">✏️ Title</label>
+          <input type="text" id="postTitle" placeholder="e.g. Feeling stronger today" style="width:100%; padding:0.75rem 1rem; border:1.5px solid var(--teal-light); border-radius:0.75rem; font-family:'Inter',sans-serif; font-size:0.92rem; outline:none;" />
+        </div>
+        <div style="margin-bottom:1rem;">
+          <label style="display:block; font-size:0.82rem; font-weight:600; color:var(--teal-deep); margin-bottom:0.4rem;">💬 Message</label>
+          <textarea id="postMessage" rows="5" placeholder="Write whatever is on your mind..." style="width:100%; padding:0.75rem 1rem; border:1.5px solid var(--teal-light); border-radius:0.75rem; font-family:'Inter',sans-serif; font-size:0.92rem; outline:none; resize:vertical;"></textarea>
+        </div>
+        <div style="margin-bottom:1.2rem;">
+          <label style="display:block; font-size:0.82rem; font-weight:600; color:var(--teal-deep); margin-bottom:0.4rem;">😊 How are you feeling?</label>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem;">
+            <input type="radio" name="postMood" id="pmGood" value="good" style="display:none;" checked />
+            <label for="pmGood" class="post-mood-label">😊 Good Day</label>
+            <input type="radio" name="postMood" id="pmTough" value="tough" style="display:none;" />
+            <label for="pmTough" class="post-mood-label">😔 Tough Day</label>
+            <input type="radio" name="postMood" id="pmInfo" value="info" style="display:none;" />
+            <label for="pmInfo" class="post-mood-label">🔬 Medical Update</label>
+            <input type="radio" name="postMood" id="pmMilestone" value="milestone" style="display:none;" />
+            <label for="pmMilestone" class="post-mood-label">🌟 Milestone</label>
+          </div>
+        </div>
+
+        <button onclick="generatePostCode()" style="width:100%; background:var(--teal-deep); color:#fff; border:none; cursor:pointer; padding:0.9rem; border-radius:0.75rem; font-family:'Inter',sans-serif; font-size:0.95rem; font-weight:600;">Generate My Update ✨</button>
+
+        <!-- PREVIEW + CODE OUTPUT -->
+        <div id="postOutput" style="display:none; margin-top:1.5rem; border-top:1px solid var(--teal-pale); padding-top:1.5rem;">
+          <div style="font-size:0.75rem; font-weight:600; color:var(--teal-mid); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.8rem;">Preview</div>
+          <div id="postPreviewCard" style="border:1.5px solid var(--teal-light); border-radius:0.9rem; padding:1.2rem; margin-bottom:1.2rem;"></div>
+
+          <div style="margin-bottom:0.8rem;">
+            <div style="display:flex;gap:0.6rem;align-items:flex-start;margin-bottom:0.5rem;"><div style="flex-shrink:0;width:22px;height:22px;background:var(--teal-deep);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;">1</div><div style="font-size:0.82rem;color:var(--slate-light);padding-top:0.2rem;">Tap <strong style="color:var(--slate);">Copy Code</strong> below</div></div>
+            <div style="display:flex;gap:0.6rem;align-items:flex-start;margin-bottom:0.5rem;"><div style="flex-shrink:0;width:22px;height:22px;background:var(--teal-deep);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;">2</div><div style="font-size:0.82rem;color:var(--slate-light);padding-top:0.2rem;">Open <strong style="color:var(--slate);">updates.html</strong> on GitHub → pencil icon</div></div>
+            <div style="display:flex;gap:0.6rem;align-items:flex-start;margin-bottom:0.5rem;"><div style="flex-shrink:0;width:22px;height:22px;background:var(--teal-deep);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;">3</div><div style="font-size:0.82rem;color:var(--slate-light);padding-top:0.2rem;">Find <strong style="color:var(--slate);">&lt;!-- UPDATES GO HERE</strong> → paste above it</div></div>
+            <div style="display:flex;gap:0.6rem;align-items:flex-start;"><div style="flex-shrink:0;width:22px;height:22px;background:var(--teal-deep);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;">4</div><div style="font-size:0.82rem;color:var(--slate-light);padding-top:0.2rem;">Tap <strong style="color:var(--slate);">Commit changes</strong> — live in 2 minutes! 🎉</div></div>
+          </div>
+
+          <div id="postCodeBox" style="background:#F1F5F9;border:1px solid #CBD5E1;border-radius:0.75rem;padding:1rem;font-family:monospace;font-size:0.75rem;color:#334155;white-space:pre-wrap;word-break:break-all;max-height:150px;overflow-y:auto;margin-bottom:0.8rem;"></div>
+          <button id="postCopyBtn" onclick="copyPostCode()" style="width:100%;background:var(--gold);color:#fff;border:none;cursor:pointer;padding:0.85rem;border-radius:0.75rem;font-family:'Inter',sans-serif;font-size:0.9rem;font-weight:600;">📋 Copy Code</button>
+          <a href="https://github.com" target="_blank" style="display:block;text-align:center;margin-top:0.8rem;background:var(--teal-pale);border:1.5px solid var(--teal-light);color:var(--teal-deep);padding:0.75rem;border-radius:0.75rem;text-decoration:none;font-size:0.85rem;font-weight:600;">→ Open GitHub to paste</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="main-lightbox" id="mainLightbox" onclick="mainCloseLightbox(event)">
+  <div class="main-lightbox-inner">
+    <button class="main-lightbox-close" onclick="mainCloseLightbox()">✕</button>
+    <img id="mainLightboxImg" src="" alt="" />
+    <div class="main-lightbox-caption" id="mainLightboxCaption"></div>
+    <div class="main-lightbox-date" id="mainLightboxDate"></div>
+    <div class="main-lightbox-memory" id="mainLightboxMemory"></div>
+  </div>
+</div>
+
+<!-- TAKE ACTION -->
+<section class="action" id="action">
+  <div class="container">
+    <div class="section-label">How You Can Help</div>
+    <h2 class="section-title">Take Action for Raj</h2>
+    <div class="action-grid">
+      <div class="action-card">
+        <div class="action-icon">🔗</div>
+        <h3>Share His Story</h3>
+        <p>The most powerful thing you can do is share this page. Every share spreads awareness and may reach someone who needed to find us.</p>
+        <a href="#" onclick="navigator.share ? navigator.share({title:'Fighting for Raj', url: window.location.href}) : alert('Copy this page URL and share it!')">Share Now</a>
+      </div>
+      <div class="action-card">
+        <div class="action-icon">🧬</div>
+        <h3>Fund Research</h3>
+        <p>Donate to the Cholangiocarcinoma Foundation Australia — a patient-led charity funding research and supporting patients. Donations over $2 are tax-deductible.</p>
+        <a href="https://cholangiocarcinomaaustralia.org/donate/" target="_blank">Donate in Australia</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section class="resources" id="resources">
+  <div class="container">
+    <div class="section-label">Trusted Resources</div>
+    <h2 class="section-title">For Patients, Families & Researchers</h2>
+    <p class="section-body">Everything in one place — from the Cholangiocarcinoma Foundation to clinical trials, genomic testing, specialist centers, and support organizations.</p>
+
+    <div class="resource-list" style="margin-top:2.5rem;">
+
+      <a href="https://cholangiocarcinomaaustralia.org" target="_blank" class="resource-item">
+        <div class="resource-icon">🌐</div>
+        <div class="resource-text">
+          <div class="resource-tag">CCA AU</div>
+          <h4>CCA Australia Home</h4>
+          <p>Australia's leading patient-led CCA charity — built by survivors, powered by action.</p>
+        </div>
+      </a>
+
+      <a href="https://cholangiocarcinomaaustralia.org/patient-support/" target="_blank" class="resource-item">
+        <div class="resource-icon">🤝</div>
+        <div class="resource-text">
+          <div class="resource-tag">CCA AU</div>
+          <h4>CCA Australia Patient Support</h4>
+          <p>Navigators, peer mentors and the Patient Navigator Journal for patients and caregivers.</p>
+        </div>
+      </a>
+
+      <a href="https://cholangiocarcinomaaustralia.org/clinical-trials/" target="_blank" class="resource-item">
+        <div class="resource-icon">🧪</div>
+        <div class="resource-text">
+          <div class="resource-tag">CCA AU</div>
+          <h4>CCA Australia Trial Finder</h4>
+          <p>Curated list of active Australian CCA clinical trials matched by mutation type.</p>
+        </div>
+      </a>
+
+      <a href="https://cholangiocarcinomaaustralia.org/patient-registry/" target="_blank" class="resource-item">
+        <div class="resource-icon">📋</div>
+        <div class="resource-text">
+          <div class="resource-tag">CCA AU</div>
+          <h4>CCA Australia Patient Registry</h4>
+          <p>Join to contribute to Australian research and be matched to new trials.</p>
+        </div>
+      </a>
+
+      <a href="https://cholangiocarcinomaaustralia.org/donate/" target="_blank" class="resource-item">
+        <div class="resource-icon">💛</div>
+        <div class="resource-text">
+          <div class="resource-tag">CCA AU</div>
+          <h4>Donate — CCA Australia</h4>
+          <p>Tax-deductible for Australian donors (DGR status with the ATO).</p>
+        </div>
+      </a>
+
+      <a href="https://cholangiocarcinomaaustralia.org/annual-conference/" target="_blank" class="resource-item">
+        <div class="resource-icon">📅</div>
+        <div class="resource-text">
+          <div class="resource-tag">CCA AU</div>
+          <h4>CCA Australia Annual Conference</h4>
+          <p>Connect with Australian specialists, researchers, and fellow patients.</p>
+        </div>
+      </a>
+
+      <a href="https://gicancer.org.au" target="_blank" class="resource-item">
+        <div class="resource-icon">🔬</div>
+        <div class="resource-text">
+          <div class="resource-tag research-tag">Research</div>
+          <h4>GI Cancer Trials Australia</h4>
+          <p>Australian clinical trials for GI cancers including cholangiocarcinoma.</p>
+        </div>
+      </a>
+
+      <a href="https://www.rarecancers.org.au" target="_blank" class="resource-item">
+        <div class="resource-icon">📄</div>
+        <div class="resource-text">
+          <div class="resource-tag research-tag">Research</div>
+          <h4>Rare Cancers Australia</h4>
+          <p>National advocacy, support and research funding for rare cancers including CCA.</p>
+        </div>
+      </a>
+
+      <a href="https://www.warpnine.org.au/cholangiocarcinoma" target="_blank" class="resource-item">
+        <div class="resource-icon">🧬</div>
+        <div class="resource-text">
+          <div class="resource-tag research-tag">Research</div>
+          <h4>WARPNINE — CCA Research</h4>
+          <p>Australian organisation funding cutting-edge CCA clinical trials and research.</p>
+        </div>
+      </a>
+
+      <a href="https://www.petermac.org" target="_blank" class="resource-item">
+        <div class="resource-icon">🏥</div>
+        <div class="resource-text">
+          <div class="resource-tag research-tag">Research</div>
+          <h4>Peter MacCallum Cancer Centre</h4>
+          <p>Australia's only public hospital dedicated solely to cancer — Melbourne. Remote second opinions available.</p>
+        </div>
+      </a>
+
+      <a href="https://www.canrefer.org.au/cancer-types/bile-duct-cancer" target="_blank" class="resource-item">
+        <div class="resource-icon">🏨</div>
+        <div class="resource-text">
+          <div class="resource-tag research-tag">Research</div>
+          <h4>CanRefer — Bile Duct Cancer</h4>
+          <p>Find specialist bile duct cancer services and multidisciplinary teams near you across Australia.</p>
+        </div>
+      </a>
+
+      <a href="https://www.cancercouncil.com.au" target="_blank" class="resource-item">
+        <div class="resource-icon">💙</div>
+        <div class="resource-text">
+          <div class="resource-tag support-tag">Support</div>
+          <h4>Cancer Council Australia</h4>
+          <p>Free counselling, support groups and the 13 11 20 helpline for patients and families.</p>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Made with love for <span>Raj</span> &nbsp;·&nbsp; Fighting cholangiocarcinoma, one day at a time &nbsp;·&nbsp; 2026</p>
+</footer>
+
+<script>
+  // TABS
+  function switchTab(tab, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // POST UPDATE
+  const postToday = new Date();
+  document.getElementById('postDate').value = postToday.toLocaleDateString('en-AU', { day:'numeric', month:'long', year:'numeric' });
+
+  const postMoodConfig = {
+    good:      { label:'😊 Good Day',       cssClass:'tag-good',      cardClass:'good' },
+    tough:     { label:'😔 Tough Day',      cssClass:'tag-tough',     cardClass:'tough' },
+    info:      { label:'🔬 Medical Update', cssClass:'tag-info',      cardClass:'info' },
+    milestone: { label:'🌟 Milestone',      cssClass:'tag-milestone', cardClass:'milestone' }
+  };
+
+  function generatePostCode() {
+    const date    = document.getElementById('postDate').value.trim();
+    const title   = document.getElementById('postTitle').value.trim();
+    const message = document.getElementById('postMessage').value.trim();
+    const mood    = document.querySelector('input[name="postMood"]:checked').value;
+    if (!date || !title || !message) { alert('Please fill in the date, title and message.'); return; }
+    const cfg = postMoodConfig[mood];
+
+    document.getElementById('postPreviewCard').innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.6rem;">
+        <span style="font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal-mid);">${escPost(date)}</span>
+        <span class="card-tag ${cfg.cssClass}" style="font-size:0.65rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.2rem 0.65rem;border-radius:2rem;">${cfg.label}</span>
+      </div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--slate);margin-bottom:0.4rem;">${escPost(title)}</div>
+      <div style="font-size:0.88rem;color:var(--slate-light);line-height:1.7;">${escPost(message)}</div>
+      <div style="margin-top:0.8rem;padding-top:0.8rem;border-top:1px solid var(--teal-pale);font-size:0.78rem;color:var(--slate-light);">💚 Written by Raj</div>`;
+
+    const code = `<div class="update-card ${cfg.cardClass}">\n  <div class="card-meta">\n    <span class="card-date">${escPost(date)}</span>\n    <span class="card-tag ${cfg.cssClass}">${cfg.label}</span>\n  </div>\n  <h3>${escPost(title)}</h3>\n  <p>${escPost(message)}</p>\n  <div class="card-footer">💚 Written by Raj</div>\n</div>`;
+    document.getElementById('postCodeBox').textContent = code;
+    document.getElementById('postOutput').style.display = 'block';
+    document.getElementById('postOutput').scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+
+  function copyPostCode() {
+    const code = document.getElementById('postCodeBox').textContent;
+    const btn  = document.getElementById('postCopyBtn');
+    navigator.clipboard.writeText(code).then(() => {
+      btn.textContent = '✅ Copied!';
+      setTimeout(() => { btn.textContent = '📋 Copy Code'; }, 2500);
+    }).catch(() => {
+      const ta = document.createElement('textarea');
+      ta.value = code; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      btn.textContent = '✅ Copied!';
+      setTimeout(() => { btn.textContent = '📋 Copy Code'; }, 2500);
+    });
+  }
+
+  function escPost(str) {
+    return str ? str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') : '';
+  }
+
+  // PHOTOS
+  let mainPhotos = [];
+  let mainImgData = null;
+
+  function mainPreviewFile(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => { mainImgData = ev.target.result; };
+    reader.readAsDataURL(file);
+  }
+
+  function mainAddPhoto() {
+    const caption = document.getElementById('mainCaption').value.trim();
+    const date    = document.getElementById('mainDate').value.trim();
+    const memory  = document.getElementById('mainMemory').value.trim();
+    if (!caption) { alert('Please add a caption.'); return; }
+    mainPhotos.unshift({ caption, date, memory, img: mainImgData });
+    mainRenderGrid();
+    document.getElementById('mainCaption').value = '';
+    document.getElementById('mainDate').value    = '';
+    document.getElementById('mainMemory').value  = '';
+    document.getElementById('mainFileInput').value = '';
+    mainImgData = null;
+  }
+
+  function mainRenderGrid() {
+    const grid = document.getElementById('mainPhotoGrid');
+    if (!mainPhotos.length) {
+      grid.innerHTML = `<div style="grid-column:1/-1;background:var(--white);border-radius:1rem;padding:2.5rem;text-align:center;"><div style="font-size:2rem;margin-bottom:0.6rem;">🌿</div><div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--slate);">No photos yet</div></div>`;
+      return;
+    }
+    grid.innerHTML = mainPhotos.map((p, i) => `
+      <div class="main-photo-card">
+        <div onclick="mainOpenLightbox(${i})" style="cursor:${p.img ? 'pointer' : 'default'}">
+          ${p.img ? `<img class="main-photo-img" src="${p.img}" alt="${p.caption}" />` : `<div class="main-photo-placeholder">🖼️</div>`}
+        </div>
+        <div class="main-photo-body">
+          ${p.date ? `<div class="main-photo-date">${p.date}</div>` : ''}
+          <div class="main-photo-caption">${p.caption}</div>
+          ${p.memory ? `<div class="main-photo-memory">${p.memory}</div>` : ''}
+        </div>
+      </div>`).join('');
+  }
+
+  function mainOpenLightbox(i) {
+    const p = mainPhotos[i];
+    if (!p.img) return;
+    document.getElementById('mainLightboxImg').src = p.img;
+    document.getElementById('mainLightboxCaption').textContent = p.caption;
+    document.getElementById('mainLightboxDate').textContent    = p.date || '';
+    document.getElementById('mainLightboxMemory').textContent  = p.memory || '';
+    document.getElementById('mainLightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function mainCloseLightbox(e) {
+    if (e && e.target !== document.getElementById('mainLightbox') && !e.target.classList.contains('main-lightbox-close')) return;
+    document.getElementById('mainLightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+</script>
+</body>
+</html>
