@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post an Update | Raj's Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green-deep:  #1B4332;
+      --green-mid:   #2D6A4F;
+      --green-light: #95D5B2;
+      --green-pale:  #E8F5EE;
+      --white:       #FFFFFF;
+      --slate:       #1A2535;
+      --slate-light: #4A5A6A;
+      --gold:        #C8772A;
+      --gold-light:  #FAE8D0;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--green-pale);
+      color: var(--slate);
+      min-height: 100vh;
+      padding: 2rem 1.2rem 4rem;
+    }
+
+    .container { max-width: 620px; margin: 0 auto; }
+
+    /* HEADER */
+    .header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .header-badge {
+      display: inline-block;
+      background: var(--green-deep);
+      color: var(--green-light);
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.35rem 1rem; border-radius: 2rem;
+      margin-bottom: 1rem;
+    }
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 900;
+      color: var(--green-deep);
+      margin-bottom: 0.4rem;
+    }
+    .header p { font-size: 0.92rem; color: var(--slate-light); }
+
+    /* FORM CARD */
+    .form-card {
+      background: var(--white);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      box-shadow: 0 4px 24px rgba(27,67,50,0.1);
+      margin-bottom: 1.5rem;
+    }
+
+    .field { margin-bottom: 1.4rem; }
+    .field label {
+      display: block;
+      font-size: 0.82rem; font-weight: 600;
+      color: var(--green-deep);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.03em;
+    }
+    .field input,
+    .field textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1.5px solid #D1E8DC;
+      border-radius: 0.75rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: var(--slate);
+      outline: none;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+    .field input:focus,
+    .field textarea:focus { border-color: var(--green-mid); }
+
+    /* MOOD SELECTOR */
+    .mood-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    .mood-option { display: none; }
+    .mood-label {
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0.85rem 1rem;
+      border: 1.5px solid #D1E8DC;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      font-size: 0.88rem; font-weight: 500;
+      color: var(--slate-light);
+      transition: all 0.2s;
+      user-select: none;
+    }
+    .mood-label:hover { border-color: var(--green-mid); color: var(--slate); }
+    .mood-option:checked + .mood-label {
+      border-color: var(--green-deep);
+      background: var(--green-pale);
+      color: var(--green-deep);
+      font-weight: 600;
+    }
+    .mood-emoji { font-size: 1.3rem; }
+
+    /* GENERATE BUTTON */
+    .btn-generate {
+      width: 100%;
+      background: var(--green-deep);
+      color: var(--white);
+      border: none; cursor: pointer;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem; font-weight: 600;
+      transition: background 0.2s, transform 0.2s;
+      margin-top: 0.5rem;
+    }
+    .btn-generate:hover { background: var(--green-mid); transform: translateY(-2px); }
+
+    /* OUTPUT */
+    .output-card {
+      background: var(--white);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      box-shadow: 0 4px 24px rgba(27,67,50,0.1);
+      display: none;
+    }
+    .output-card.visible { display: block; }
+
+    .output-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--green-deep);
+      margin-bottom: 1rem;
+    }
+
+    /* PREVIEW */
+    .preview-box {
+      border: 1.5px solid #D1E8DC;
+      border-radius: 1rem;
+      padding: 1.4rem;
+      margin-bottom: 1.2rem;
+    }
+    .preview-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 0.6rem; flex-wrap: wrap; gap: 0.4rem;
+    }
+    .preview-date { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-mid); }
+    .preview-tag {
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.2rem 0.65rem; border-radius: 2rem;
+    }
+    .tag-good      { background: #D1FAE5; color: #065F46; }
+    .tag-tough     { background: #FAE8D0; color: #7A3C0A; }
+    .tag-info      { background: #DBEAFE; color: #1E3A8A; }
+    .tag-milestone { background: #EDE9FE; color: #4C1D95; }
+
+    .preview-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--slate);
+      margin-bottom: 0.5rem;
+    }
+    .preview-body { font-size: 0.9rem; color: var(--slate-light); line-height: 1.7; }
+    .preview-footer {
+      margin-top: 0.8rem; padding-top: 0.8rem;
+      border-top: 1px solid var(--green-pale);
+      font-size: 0.78rem; color: var(--slate-light);
+    }
+
+    /* STEPS */
+    .steps { margin-bottom: 1.2rem; }
+    .step {
+      display: flex; gap: 0.8rem; align-items: flex-start;
+      margin-bottom: 0.8rem;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 26px; height: 26px;
+      background: var(--green-deep);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700;
+    }
+    .step-text { font-size: 0.88rem; color: var(--slate-light); padding-top: 0.3rem; line-height: 1.5; }
+    .step-text strong { color: var(--slate); }
+
+    /* CODE BOX */
+    .code-box {
+      background: #F1F5F9;
+      border: 1px solid #CBD5E1;
+      border-radius: 0.75rem;
+      padding: 1rem;
+      font-family: monospace;
+      font-size: 0.78rem;
+      color: #334155;
+      white-space: pre-wrap;
+      word-break: break-all;
+      max-height: 200px;
+      overflow-y: auto;
+      margin-bottom: 1rem;
+    }
+
+    /* COPY BUTTON */
+    .btn-copy {
+      width: 100%;
+      background: var(--gold);
+      color: var(--white);
+      border: none; cursor: pointer;
+      padding: 0.9rem;
+      border-radius: 0.75rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem; font-weight: 600;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-copy:hover { background: #b8661f; transform: translateY(-2px); }
+    .btn-copy.copied { background: var(--green-mid); }
+
+    .divider { height: 1px; background: var(--green-pale); margin: 1.2rem 0; }
+
+    .github-link {
+      display: block;
+      text-align: center;
+      background: var(--green-pale);
+      border: 1.5px solid var(--green-light);
+      color: var(--green-deep);
+      padding: 0.85rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      font-size: 0.88rem; font-weight: 600;
+      transition: background 0.2s;
+    }
+    .github-link:hover { background: #D1F0DF; }
+
+    .back-link {
+      display: block; text-align: center;
+      margin-top: 2rem;
+      font-size: 0.85rem; color: var(--slate-light);
+      text-decoration: none;
+    }
+    .back-link:hover { color: var(--green-deep); }
+
+    @media (max-width: 480px) {
+      .mood-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-badge">✏️ Raj's Blog</div>
+    <h1>Post an Update</h1>
+    <p>Fill in the form below — no coding needed.</p>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-card">
+
+    <div class="field">
+      <label>📅 Date</label>
+      <input type="text" id="inputDate" placeholder="e.g. 2 July 2026" />
+    </div>
+
+    <div class="field">
+      <label>✏️ Title</label>
+      <input type="text" id="inputTitle" placeholder="e.g. Feeling stronger today" />
+    </div>
+
+    <div class="field">
+      <label>💬 Your message</label>
+      <textarea id="inputMessage" rows="6" placeholder="Write whatever is on your mind — how you're feeling, what happened today, a thought you want to share..."></textarea>
+    </div>
+
+    <div class="field">
+      <label>😊 How are you feeling?</label>
+      <div class="mood-grid">
+
+        <input type="radio" name="mood" id="moodGood" value="good" class="mood-option" checked />
+        <label for="moodGood" class="mood-label">
+          <span class="mood-emoji">😊</span> Good Day
+        </label>
+
+        <input type="radio" name="mood" id="moodTough" value="tough" class="mood-option" />
+        <label for="moodTough" class="mood-label">
+          <span class="mood-emoji">😔</span> Tough Day
+        </label>
+
+        <input type="radio" name="mood" id="moodInfo" value="info" class="mood-option" />
+        <label for="moodInfo" class="mood-label">
+          <span class="mood-emoji">🔬</span> Medical Update
+        </label>
+
+        <input type="radio" name="mood" id="moodMilestone" value="milestone" class="mood-option" />
+        <label for="moodMilestone" class="mood-label">
+          <span class="mood-emoji">🌟</span> Milestone
+        </label>
+
+      </div>
+    </div>
+
+    <button class="btn-generate" onclick="generateUpdate()">Generate My Update ✨</button>
+
+  </div>
+
+  <!-- OUTPUT -->
+  <div class="output-card" id="outputCard">
+
+    <div class="output-title">✅ Your update is ready!</div>
+
+    <!-- PREVIEW -->
+    <div class="preview-box" id="previewBox">
+      <div class="preview-meta">
+        <span class="preview-date" id="previewDate"></span>
+        <span class="preview-tag" id="previewTag"></span>
+      </div>
+      <div class="preview-heading" id="previewTitle"></div>
+      <div class="preview-body" id="previewMessage"></div>
+      <div class="preview-footer">💚 Written by Raj</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- STEPS -->
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">Tap <strong>Copy Code</strong> below</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">Open <strong>updates.html</strong> on GitHub and tap the pencil icon</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">Find the line that says <strong>&lt;!-- UPDATES GO HERE</strong> and paste above it</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-text">Scroll down and tap <strong>Commit changes</strong> — you're live! 🎉</div>
+      </div>
+    </div>
+
+    <!-- CODE -->
+    <div class="code-box" id="codeBox"></div>
+
+    <button class="btn-copy" id="copyBtn" onclick="copyCode()">📋 Copy Code</button>
+
+    <div class="divider"></div>
+
+    <a href="https://github.com" target="_blank" class="github-link">→ Open GitHub to paste your update</a>
+
+  </div>
+
+  <a href="updates.html" class="back-link">← Back to Raj's Updates</a>
+
+</div>
+
+<script>
+  // Auto-fill today's date
+  const today = new Date();
+  const options = { day: 'numeric', month: 'long', year: 'numeric' };
+  document.getElementById('inputDate').value = today.toLocaleDateString('en-AU', options);
+
+  const moodConfig = {
+    good:      { label: '😊 Good Day',        cssClass: 'tag-good',      cardClass: 'good' },
+    tough:     { label: '😔 Tough Day',       cssClass: 'tag-tough',     cardClass: 'tough' },
+    info:      { label: '🔬 Medical Update',  cssClass: 'tag-info',      cardClass: 'info' },
+    milestone: { label: '🌟 Milestone',       cssClass: 'tag-milestone', cardClass: 'good' }
+  };
+
+  function generateUpdate() {
+    const date    = document.getElementById('inputDate').value.trim();
+    const title   = document.getElementById('inputTitle').value.trim();
+    const message = document.getElementById('inputMessage').value.trim();
+    const mood    = document.querySelector('input[name="mood"]:checked').value;
+
+    if (!date || !title || !message) {
+      alert('Please fill in the date, title and your message before generating.');
+      return;
+    }
+
+    const cfg = moodConfig[mood];
+
+    // Update preview
+    document.getElementById('previewDate').textContent = date;
+    document.getElementById('previewTag').textContent = cfg.label;
+    document.getElementById('previewTag').className = 'preview-tag ' + cfg.cssClass;
+    document.getElementById('previewTitle').textContent = title;
+    document.getElementById('previewMessage').textContent = message;
+
+    // Generate code
+    const tagLabel = cfg.label.replace(/['"]/g, '');
+    const safeTitle   = escapeHtml(title);
+    const safeMessage = escapeHtml(message);
+    const safeDate    = escapeHtml(date);
+
+    const code = `<div class="update-card ${cfg.cardClass}">
+  <div class="card-meta">
+    <span class="card-date">${safeDate}</span>
+    <span class="card-tag ${cfg.cssClass}">${tagLabel}</span>
+  </div>
+  <h3>${safeTitle}</h3>
+  <p>${safeMessage}</p>
+  <div class="card-footer">💚 Written by Raj</div>
+</div>`;
+
+    document.getElementById('codeBox').textContent = code;
+
+    // Show output
+    const out = document.getElementById('outputCard');
+    out.classList.add('visible');
+    out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function copyCode() {
+    const code = document.getElementById('codeBox').textContent;
+    navigator.clipboard.writeText(code).then(() => {
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = '✅ Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = '📋 Copy Code';
+        btn.classList.remove('copied');
+      }, 2500);
+    }).catch(() => {
+      // Fallback for older browsers
+      const ta = document.createElement('textarea');
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = '✅ Copied!';
+      setTimeout(() => { btn.textContent = '📋 Copy Code'; }, 2500);
+    });
+  }
+
+  function escapeHtml(str) {
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+</script>
+</body>
+</html>
